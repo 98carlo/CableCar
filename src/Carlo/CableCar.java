@@ -20,7 +20,7 @@ public class CableCar {
             for (int j = 0; j < numMasts; j++){
                 heightMasts[j] = in.nextInt();
             }
-            solveProblem1and2(heightMasts, m);
+            solveProblem3(heightMasts, m);
             m++;
         }
     }
@@ -44,6 +44,48 @@ public class CableCar {
        if(Boolean == true){
            System.out.println("case #" + m + ": yes");
        }
+    }
+    
+    public static void solveProblem3 (int [] heightMasts, int m){
+        int currentDistance = 0;
+        int nextDistance = 0;
+        int currentNumberOfDistances = 1;
+        int nextNumberOfDistances = 1;
+        int k = 0;
+        int q = 1;
+        for(int j = 2; j < heightMasts.length; j++){
+            currentDistance = heightMasts[q]-heightMasts[k];
+            nextDistance = heightMasts[j]-heightMasts[q];
+
+            if(nextNumberOfDistances == 1){
+            if(currentDistance == nextDistance){
+                currentNumberOfDistances++;
+            }
+            else{
+                nextNumberOfDistances++;
+            }
+            }
+            if(nextNumberOfDistances != 1){
+                if(currentDistance == nextDistance){
+                    nextNumberOfDistances++;
+                                        
+                }
+                else{
+
+                    if(nextNumberOfDistances > currentNumberOfDistances){
+
+                        currentNumberOfDistances = nextNumberOfDistances;
+                    }
+                    
+                    nextNumberOfDistances = 1;
+                    
+                }
+            }
+            q++;
+            k++;
+            
+        }
+        System.out.println("case #" + m + ": " + currentNumberOfDistances);
     }
     
 }
